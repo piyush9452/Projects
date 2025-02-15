@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pha5e Hero Section</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Pha5e</h1>
+            <p class="hero-subtitle">A new era of digital experience.</p>
+        </div>
+        <div class="hero-images">
+            <img src="img1.png" class="hero-img" data-id="1">
+        </div>
+    </section>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: black;
+            color: white;
+            text-align: center;
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .hero-title {
+            font-size: 3rem;
+            opacity: 0;
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0;
+        }
+        .hero-images {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .hero-img {
+            width: 90%;
+            height: 90%;
+            transition: filter 0.3s ease;
+        }
+        .hero-img:hover {
+            filter: brightness(1.2);
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.to(".hero-title", { opacity: 1, y: -20, duration: 1 });
+            gsap.to(".hero-subtitle", { opacity: 1, y: -10, duration: 1, delay: 0.5 });
+
+            document.querySelectorAll(".hero-img").forEach(img => {
+                img.addEventListener("mouseenter", () => {
+                    document.querySelectorAll(".hero-img").forEach(other => {
+                        if (other !== img) {
+                            other.style.filter = "grayscale(100%)";
+                        }
+                    });
+                });
+                img.addEventListener("mouseleave", () => {
+                    document.querySelectorAll(".hero-img").forEach(other => {
+                        other.style.filter = "none";
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
